@@ -1,0 +1,13 @@
+[project]
+name = "ComfyUI-SingleLinePicker"
+description = "Select one line from the text list with a single click. It dramatically improves the process of switching LoRA or prompts."
+version = "1.0.0"
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/hetima/ComfyUI-SingleLinePicker"
+
+[tool.comfy]
+PublisherId = "hetima"
+DisplayName = "ComfyUI-SingleLinePicker"
