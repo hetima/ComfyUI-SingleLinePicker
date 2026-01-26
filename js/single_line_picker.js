@@ -262,13 +262,11 @@ app.registerExtension({
             };
 
             nodeType.prototype.setTextList = function (texts) {
-                var text = '';
+                let text = "";
                 if (typeof texts === 'string') {
                     text = texts;
                 } else {
-                    for (let i = 0; i < texts.length; i++) {
-                        text += texts[i];
-                    }
+                    text = texts?.join?.("") || "";
                 }
                 if (this.textListWidget) {
                     if (this.textListWidget.value != text) {
