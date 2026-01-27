@@ -30,7 +30,19 @@
 
 デフォルトのローダーとほぼ同じです。LoRAファイルの指定部分がコンボボックスではなくテキストになっているのでSingle Line Pickerを直接繋げることができます。
 
-出力パラメータ`stem`を持っています。LoRAファイルの拡張子を除いたファイル名を出力します（[audioscavenger/save-image-extended-comfyui](https://github.com/audioscavenger/save-image-extended-comfyui) はLoRAの名前を参照することができますが、SLP Lora Loaderの`lora_name`を参照しようとするとエラーが出たため名前を`lora_name_text`に変更しています。この`lora_name_text`を参照したとしてもエラーにはなりませんが、正常な値は取得できません。`stem`出力を加工するなりして対応してください）。
+出力パラメータ`stem`を持っています。LoRAファイルの拡張子を除いたファイル名を出力します。次節のSLP Filename Prefixで利用できます。
+
+
+### SLP Filename Prefix
+
+「画像を保存」などのファイルを書き出すノードは`filename_prefix(ファイル名_プレフィックス)`パラメータを持ち`%date:%`方式で現在の日付時刻を設定できます。ただしこれはフロントエンドで前処理されるため、実行中の出力と組み合わせることが難しいのです。`filename_prefix`にインプット接続しても日付時刻の処理はされません。
+
+それを解決するためにこのノードでは、日付時刻の処理に加えてプレースホルダによる文字列置き換えを行った結果を出力します。「画像を保存」などの`filename_prefix`に有効な値を渡すことができます。
+
+プレースホルダは`$1` `$2` `$3` `$4`と最大4個作ることができ、それぞれ同名のインプットで置き換えられます。入力は文字列と数値に対応しています。
+
+![screecshot03](./assets/slp03.jpg)
+
 
 ## Changelog
 

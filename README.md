@@ -29,7 +29,19 @@ When select this node, a button marked with the ![icon](./assets/lora.svg) icon 
 
 It's almost identical to the default loader. Since the LoRA file selection part is text instead of a combo box so that connect a Single Line Picker directly.
 
-It has an output parameter called `stem`. It outputs LoRA filename without file extension ([audioscavenger/save-image-extended-comfyui](https://github.com/audioscavenger/save-image-extended-comfyui) can reference LoRA name, but since attempting to reference `lora_name` in the SLP Lora Loader caused an error, the name has been changed to `lora_name_text`. Referencing this `lora_name_text` will not cause an error, but it will not retrieve the correct value. Please handle this by modifying the `stem` output or similar means). 
+It has an output parameter called `stem`. It outputs LoRA filename without file extension. Available in the next section's SLP Filename Prefix.
+
+
+### SLP Filename Prefix
+
+Nodes that export files, such as "Save Image" feature a `filename_prefix` parameter that can be set to the current date and time using the `%date:%` format. However, since this is preprocessed by the frontend, it is difficult to combine with backend's runtime output. Connecting an input to `filename_prefix` will not process the date and time.
+
+To resolve this, this node outputs the result of processing the date and time, along with replacing placeholders with strings. You can pass valid value for `filename_prefix` such as "Save Image".
+
+Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is replaced with an input of the same name. Inputs support string and numeric values.
+
+![screecshot03](./assets/slp03.jpg)
+
 
 ## Changelog
 
