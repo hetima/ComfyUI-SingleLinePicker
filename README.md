@@ -45,5 +45,8 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 
 ## Changelog
 
+### 1.1.0
+- Add new custom node: SLP Filename Prefix
+
 ### 1.0.0
 - Initial release

@@ -46,5 +46,8 @@
 
 ## Changelog
 
+### 1.1.0
+- SLP Filename Prefix カスタムノードを追加
+
 ### 1.0.0
 - 最初のリリース
