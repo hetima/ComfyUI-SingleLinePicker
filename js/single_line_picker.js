@@ -116,6 +116,8 @@ app.registerExtension({
                 const ret = onNodeCreated ? onNodeCreated.apply(this, arguments) : undefined;
                 const node = this;
 
+                this.dictMode = false;
+
                 node.properties = node.properties || {};
                 node.properties.selected_indexes = node.properties.selected_indexes || "";
 
@@ -219,14 +221,11 @@ app.registerExtension({
                 const text = this.textListWidget.value;
                 const texts = text.split('\n');
                 let lineCount = texts.length;
-                let dictMode = false;
 
-                if (lineCount > 1 && texts[0].toUpperCase().startsWith("#DICT")) {
+                if (lineCount > 1 && this.parseConfig(texts[0])) {
                     texts.shift();
                     lineCount--;
-                    dictMode = true;
                 }
-
 
                 const needs = lineCount - this.container.childElementCount;
                 if (needs > 0){
@@ -243,7 +242,7 @@ app.registerExtension({
                     const div = this.container.children[index];
                     let realText = texts[index];
                     let label = texts[index];
-                    if (dictMode) {
+                    if (this.dictMode) {
                         const items = texts[index].split(':');
                         if (items.length > 1) {
                             label = items.shift().trim();
@@ -293,6 +292,42 @@ app.registerExtension({
                 });
             };
 
+            const configRegex = /(#\w+)(?::("([^"\\]|\\.)*"|\S+))?/g;
+            // const escapeRegex = /\\(.)/g
+            nodeType.prototype.parseConfig = function (txt) {
+                // reset
+                this.dictMode = false;
+
+                if (!txt.startsWith("#")) {
+                    return false;
+                }
+                configRegex.lastIndex = 0;
+                const result = Object.fromEntries(
+                    Array.from(txt.matchAll(configRegex), m => {
+                        const key = m[1].toLowerCase();
+                        let value = m[2] || "";
+                        if (value.endsWith(',')) {
+                            value = value.slice(0, -1);
+                        }
+                        // When enclosed in double quotation, perform quote removal and escape decoding.
+                        // if (value.startsWith('"') && value.endsWith('"')) {
+                        //     escapeRegex.lastIndex = 0;
+                        //     value = value.slice(1, -1).replace(escapeRegex, '$1');
+                        // }
+
+                        return [key, value];
+                    })
+                );
+                const keys = Object.keys(result);
+                if (keys.length == 0) {
+                    return false;
+                }
+                if (keys.includes("#dict")) {
+                    this.dictMode = true;
+                }
+
+                return true;
+            }
 
             nodeType.prototype.onSerialize = function (info) {
                 info.properties = {
