@@ -222,11 +222,13 @@ app.registerExtension({
                 const texts = text.split('\n');
                 let lineCount = texts.length;
 
+                // read the configuration from the first line
                 if (lineCount > 1 && this.parseConfig(texts[0])) {
                     texts.shift();
                     lineCount--;
                 }
 
+                // match the number of elements
                 const needs = lineCount - this.container.childElementCount;
                 if (needs > 0){
                     for (let index = 0; index < needs; index++) {
@@ -238,6 +240,7 @@ app.registerExtension({
                     }
                 }
 
+                // normal, dict
                 for (let index = 0; index < lineCount; index++) {
                     const div = this.container.children[index];
                     let realText = texts[index];
