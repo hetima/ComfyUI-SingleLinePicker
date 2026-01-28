@@ -32,4 +32,4 @@ class SLPSingleLinePicker:
         if text == source_text:
             return {"ui": { "text": source_text }, "result": (selected_text,)}
 
-        return {"ui": { "text": text }, "result": ()}
+        return {"ui": { "text": text }, "result": ("",)}
