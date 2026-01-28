@@ -118,6 +118,7 @@ app.registerExtension({
                 this.initialized = false;
 
                 this.dictMode = false;
+                this.sectionMode = false;
 
                 node.properties = node.properties || {};
                 node.properties.selected_indexes = node.properties.selected_indexes || "";
@@ -258,6 +259,12 @@ app.registerExtension({
                     texts.shift();
                     lineCount--;
                 }
+                
+                let sections = null;
+                if (this.sectionMode){
+                    sections = this.parseSectionFormat(texts);
+                    lineCount = sections.length / 2;
+                }
 
                 // match the number of elements
                 const needs = lineCount - this.container.childElementCount;
@@ -271,21 +278,39 @@ app.registerExtension({
                     }
                 }
 
-                // normal, dict
-                for (let index = 0; index < lineCount; index++) {
-                    const div = this.container.children[index];
-                    let realText = texts[index];
-                    let label = texts[index];
-                    if (this.dictMode) {
-                        const items = texts[index].split(':');
-                        if (items.length > 1) {
-                            label = items.shift().trim();
-                            realText = items.join(':').trim();
+                //section
+                if (this.sectionMode) {
+                    if (sections?.length > 0) {
+                        if (sections.length % 2 !== 0) {
+                            sections.pop();
+                        }
+                        let count = 0;
+                        for (let i = 0; i < sections.length; i += 2) {
+                            const title = sections[i];
+                            const body = sections[i + 1];
+                            const div = this.container.children[count];
+                            setItemData(div, title, body);
+                            deselectItem(div);
+                            count++;
                         }
                     }
+                } else {
+                    // normal, dict
+                    for (let index = 0; index < lineCount; index++) {
+                        const div = this.container.children[index];
+                        let realText = texts[index];
+                        let label = texts[index];
+                        if (this.dictMode) {
+                            const items = texts[index].split(':');
+                            if (items.length > 1) {
+                                label = items.shift().trim();
+                                realText = items.join(':').trim();
+                            }
+                        }
 
-                    setItemData(div, label, realText);
-                    deselectItem(div);
+                        setItemData(div, label, realText);
+                        deselectItem(div);
+                    }
                 }
 
                 this.properties.selected_indexes = "";
@@ -331,6 +356,7 @@ app.registerExtension({
             nodeType.prototype.parseConfig = function (txt) {
                 // reset
                 this.dictMode = false;
+                this.sectionMode = false;
 
                 if (!txt.startsWith("#")) {
                     return false;
@@ -358,9 +384,44 @@ app.registerExtension({
                 }
                 if (keys.includes("#dict")) {
                     this.dictMode = true;
+                } else if (keys.includes("#section")) {
+                    this.sectionMode = true;
                 }
 
                 return true;
+            }
+
+            nodeType.prototype.parseSectionFormat = function (lineArray) {
+                const result = [];
+                let currentBody = [];
+                let currentTitle = null;
+
+                lineArray.forEach((line) => {
+                    const trimmedLine = line.trim();
+                    if (!trimmedLine) return;
+                    // [label]
+                    if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
+                        // prev section
+                        if (currentTitle !== null && currentBody.length > 0) {
+                            result.push(currentTitle, currentBody.join('\n'));
+                        }
+                        // reset
+                        currentTitle = trimmedLine.substring(1, trimmedLine.length - 1);
+                        currentBody = [];
+                    } else {
+                        // accumulate the body
+                        if (currentTitle !== null) {
+                            currentBody.push(trimmedLine);
+                        }
+                    }
+                });
+
+                // push last section
+                if (currentTitle !== null && currentBody.length > 0) {
+                    result.push(currentTitle, currentBody.join('\n'));
+                }
+
+                return result;
             }
 
             nodeType.prototype.onSerialize = function (info) {
