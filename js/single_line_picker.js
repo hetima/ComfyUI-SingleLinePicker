@@ -115,6 +115,7 @@ app.registerExtension({
             nodeType.prototype.onNodeCreated = function () {
                 const ret = onNodeCreated ? onNodeCreated.apply(this, arguments) : undefined;
                 const node = this;
+                this.initialized = false;
 
                 this.dictMode = false;
 
@@ -177,7 +178,9 @@ app.registerExtension({
                     },
                 });
 
-                node.textListChanged();
+                this.properties.selected_indexes = "";
+                this.selectedTextWidget.value = "";
+                this.initialized = true;
                 return ret;
             };
 
@@ -205,6 +208,34 @@ app.registerExtension({
                 this.properties.selected_indexes = forceValue;
                 const text = selectedText(this.container);
                 this.selectedTextWidget.value = text;
+
+                // propagate value to the output nodes
+                if (this.outputs?.length > 0 && this.initialized){
+                    let outputText = text;
+                    for (const output of this.outputs) {
+                        if (output?.links?.length > 0) {
+                            for (const linkId of output.links) {
+                                const link = this.graph.links[linkId];
+                                if (!link) continue;
+                                const targetNode = this.graph.getNodeById(link.target_id);
+                                if (targetNode?.type === "HetimaSingleLinePicker") {
+                                    const targetWidget = targetNode.widgets?.find(w => w.name === "source_text");
+                                    if (targetWidget) {
+                                        setTimeout(() => {
+                                            targetWidget.value = outputText;
+                                        }, 0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (this.initialized) {
+                    setTimeout(() => {
+                        this.setDirtyCanvas(true, true);
+                    }, 0);
+                }
 
                 // const firstLine = text.split('\n')[0];
                 // const stem = firstLine.substring(
@@ -260,7 +291,7 @@ app.registerExtension({
                 this.properties.selected_indexes = "";
                 this.selectedTextWidget.value = "";
                 // this.stemTextWidget.value = "";
-                this.setDirtyCanvas(true);
+                this.setDirtyCanvas(true, true);
             };
 
             nodeType.prototype.setTextList = function (texts) {
@@ -341,6 +372,7 @@ app.registerExtension({
             };
 
             nodeType.prototype.onConfigure = function (info) {
+                this.initialized = false;
                 this.properties = this.properties || {};
 
                 if (info.properties) {
@@ -348,6 +380,7 @@ app.registerExtension({
                     this.properties.selected_indexes = info.properties.selected_indexes || "";
                 }
                 this.selectionChanged(this.properties.selected_indexes);
+                this.initialized = true;
             };
         }
     },
