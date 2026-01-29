@@ -63,7 +63,8 @@ def merge_folder_files(target_dir):
     return "\n".join(final_results)
 
 def process_csv(target_path):
-    # 単体ファイル処理
+    """単体ファイル処理"""
+
     target_path = Path(target_path)
     if target_path.suffix.lower() not in ['.csv', '.tsv']:
         print("Error: Target path must be a .csv or .tsv file")

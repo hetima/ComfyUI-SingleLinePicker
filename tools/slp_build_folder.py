@@ -77,7 +77,7 @@ def merge_subfolder_files(target_dir):
 
 def main():
     parser = argparse.ArgumentParser(description='Converts text files to SLP compatible text file.')
-    parser.add_argument('path', help='Path to the target file or directory')
+    parser.add_argument('path', help='Path to the target directory')
 
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-d', action='store_true', help='Process text files in the folder')
@@ -85,6 +85,11 @@ def main():
 
     args = parser.parse_args()
     target_path = Path(args.path)
+    target_path = Path(target_path)
+    
+    if not target_path.is_dir():
+        print(f"Error: {target_path} is not a directory.")
+        return
 
     if args.d:
         process_folder(target_path)
