@@ -70,8 +70,13 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 
 ## Changelog
 
+### 1.2.0
+- Added `#section` mode
+- Added helper scripts: slp_buld_csv.py and slp_build_folder.py
+- Supports connection between Single Line Pickers
+
 ### 1.1.0
-- Add new custom node: SLP Filename Prefix
+- Added new custom node: SLP Filename Prefix
 
 ### 1.0.0
 - Initial release

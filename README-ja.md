@@ -71,8 +71,14 @@ csv, tsvやテキストファイル群から整形済みテキストを生成す
 
 ## Changelog
 
+### 1.2.0
+- `#section`モードを追加
+- ヘルパースクリプト slp_buld_csv.py と slp_build_folder.py を追加
+- Single Line Picker 同士の接続に対応
+
+
 ### 1.1.0
-- SLP Filename Prefix カスタムノードを追加
+- カスタムノード SLP Filename Prefix を追加
 
 ### 1.0.0
 - 最初のリリース
