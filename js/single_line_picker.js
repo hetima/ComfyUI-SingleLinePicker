@@ -57,6 +57,21 @@ app.registerExtension({
             `;
             document.head.appendChild(style);
 
+            const base64prefix = ":::base64:::";
+            const decodeBase64Unicode = function (input) {
+                let rawBase64 = input;
+
+                if (input.startsWith(base64prefix)) {
+                    rawBase64 = input.slice(base64prefix.length);
+                }else{
+                    return "";
+                }
+                //bytes = Uint8Array.fromBase64(rawBase64);
+                const binString = atob(rawBase64);
+                const bytes = Uint8Array.from(binString, (m) => m.charCodeAt(0));
+                return new TextDecoder().decode(bytes);
+            }
+
             const addListItem = function (container) {
                 const itm = document.createElement("div");
                 itm.className = "single-line-picker-list-item";
@@ -395,6 +410,7 @@ app.registerExtension({
                 const result = [];
                 let currentBody = [];
                 let currentTitle = null;
+                let includesBase64 = false;
 
                 lineArray.forEach((line) => {
                     const trimmedLine = line.trim();
@@ -411,6 +427,9 @@ app.registerExtension({
                     } else {
                         // accumulate the body
                         if (currentTitle !== null) {
+                            if (currentBody.length == 0 && trimmedLine === base64prefix) {
+                                includesBase64 = true;
+                            }
                             currentBody.push(trimmedLine);
                         }
                     }
@@ -419,6 +438,16 @@ app.registerExtension({
                 // push last section
                 if (currentTitle !== null && currentBody.length > 0) {
                     result.push(currentTitle, currentBody.join('\n'));
+                }
+
+                if (includesBase64) {
+                    for (let index = 0; index < result.length; index++) {
+                        const itm = result[index];
+                        if (itm.startsWith(base64prefix)) {
+                            result[index] = decodeBase64Unicode(result[index]);
+                        }
+
+                    }
                 }
 
                 return result;
