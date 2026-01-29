@@ -47,7 +47,7 @@ last value
 
 ![screecshot02](./assets/slp02.jpg)
 
-csvやテキストファイル群から整形済みテキストを生成する[Pythonスクリプトが付属しています](./tools/README-ja.md)。出力テキストをSingle Line Pickerで読める形式にすると、二重構造のリストを再現することができます。Single Line Pickerを2つ繋げて最初のノードに適用することで、カテゴリーを選んでから項目を選ぶようなことができるようになります。付属スクリプトで簡単に作ることができます。
+csv, tsvやテキストファイル群から整形済みテキストを生成する[Pythonスクリプトが付属しています](./tools/README-ja.md)。出力テキストをSingle Line Pickerで読める形式にすると、二重構造のリストを再現することができます。Single Line Pickerを2つ繋げて最初のノードに適用することで、カテゴリーを選んでから項目を選ぶようなことができるようになります。付属スクリプトで簡単に作ることができます。
 
 ![screecshot05](./assets/slp05.jpg)
 

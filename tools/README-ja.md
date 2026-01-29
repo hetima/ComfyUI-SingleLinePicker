@@ -9,7 +9,7 @@
 
 ## slp_buld_csv.py
 
-csvやtsvを読み込んで、Single Line Pickerで使える形式に変換したテキストを書き出します。
+.csvや.tsvを読み込んで、Single Line Pickerで使える形式に変換したテキストを書き出します。
 
 ```
 python path/to/slp_build_folder.py path/to/file.csv
