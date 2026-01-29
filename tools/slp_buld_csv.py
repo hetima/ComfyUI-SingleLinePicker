@@ -34,9 +34,9 @@ def process_csv_or_tsv(file_path):
                     results.append(row[1].replace('\r\n', '\n').replace('\r', '\n'))
                     
                     # 3列目がある場合の追加処理
-                    if len(row) >= 3:
-                        results.append("---")
-                        results.append(row[2].replace('\r\n', '\n').replace('\r', '\n'))
+                    # if len(row) >= 3:
+                    #     results.append("---")
+                    #     results.append(row[2].replace('\r\n', '\n').replace('\r', '\n'))
     except Exception as e:
         return f"Error processing {path.name}: {e}"
 
