@@ -22,9 +22,34 @@ When select this node, a button marked with the ![icon](./assets/lora.svg) icon 
 
 **Dictionary Mode**: Entering `#dict` on the first line of text causes subsequent lines to be interpreted as “Display Text: Output Text” separated by colon. This allows you to grasp long contents with concise titles.
 
+Example:
+```
+#dict
+first:output value
+second:other value
+third:last value
+```
+
+**Section Mode**: Entering `#section` on the first line of text, the lines following it will be interpreted and processed as a sequence of "\[display text\](line break) output text".
+Enclose the entire line of display text in square brackets, and enter the text to be output starting from the next line. The output text may contain line breaks.
+
+Example:
+```
+#section
+[first]
+output value
+[second]
+other
+value
+[third]
+last value
+```
+
 ![screecshot02](./assets/slp02.jpg)
 
+[Python scripts are included](./tools/README.md) that generates formatted text from CSV or text files. By formatting the output text into a Single Line Picker-readable format, you can recreate a nested list structure. By connecting two Single Line Pickers and applying them to the first node, you can enable functionality like selecting a category before choosing an item. This can be created using the included script.
 
+![screecshot05](./assets/slp05.jpg)
 ### SLP Lora Loader / SLP Lora Loader (Model Only)
 
 It's almost identical to the default loader. Since the LoRA file selection part is text instead of a combo box so that connect a Single Line Picker directly.
