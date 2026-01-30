@@ -18,7 +18,7 @@ The displayed text is reflected by connecting the `text` input to an appropriate
 
 You can also change the content by directly editing `source_text` in the Parameters section of the node information panel.
 
-When select this node, a button marked with the ![icon](./assets/lora.svg) icon will appear in the toolbox. Clicking this button retrieves a list of installed LoRA files and displays them. You can output directly to the SLP Lora Loader described later.
+The "Get Lora List" item is added to the node's context menu. Selecting this retrieves a list of installed LoRA files and displays them. You can output directly to the SLP Lora Loader described later.
 
 **Dictionary Mode**: Entering `#dict` on the first line of text causes subsequent lines to be interpreted as “Display Text: Output Text” separated by colon. This allows you to grasp long contents with concise titles.
 
@@ -70,6 +70,8 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 
 ## Changelog
 
+- Added `Get Lora List` to context menu
+
 ### 1.2.1
 - Change display name from `Single Line Picker` to `SLP List View`
 
@@ -79,7 +81,7 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 - Supports connection between SLP List Views
 
 ### 1.1.0
-- Added new custom node: SLP Filename Prefix
+- Added new custom node `SLP Filename Prefix`
 
 ### 1.0.0
 - Initial release
