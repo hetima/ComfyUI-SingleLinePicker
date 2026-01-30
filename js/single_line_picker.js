@@ -6,24 +6,21 @@ import { ComfyWidgets } from "../../scripts/widgets.js";
 
 app.registerExtension({
     name: "hetima.SLPSingleLinePicker",
-    commands: [
-        {
-            id: "hetima-slpsinglelinepicker-get-loras",
-            label: "Get Lora List",
-            icon: "pi pi-file-plus",
-            tooltip: "Get Lora List",
-            function: () => {
-                const slp = Array.from(app.canvas.selectedItems)[0];
-                slp?.listLoraFiles?.();
-            }
+
+    // https://docs.comfy.org/custom-nodes/js/context-menu-migration
+    getNodeMenuItems(node) {
+        const items = []
+        // Add items only for specific node types
+        if (node.comfyClass === "HetimaSingleLinePicker") {
+            items.push(null); // Separator
+            items.push({
+                content: "Get Lora List",
+                callback: () => {
+                    node?.listLoraFiles?.();
+                }
+            })
         }
-    ],
-    getSelectionToolboxCommands: (selectedItem) => {
-        // Return array of command IDs to show in the toolbox
-        if (selectedItem.type == "HetimaSingleLinePicker") {
-            return ["hetima-slpsinglelinepicker-get-loras"];
-        }
-        return [];
+        return items
     },
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
         if (nodeData.name === "HetimaSingleLinePicker") {
