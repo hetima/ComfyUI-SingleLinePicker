@@ -1,7 +1,7 @@
 [project]
 name = "ComfyUI-SingleLinePicker"
-description = "Select one line from the text list with a single click. It dramatically improves the process of switching LoRA or prompts."
-version = "1.2.0"
+description = "A list view that selects one line from the text list with a single click. It dramatically improves the process of switching LoRA or prompts."
+version = "1.2.1"
 license = { file = "LICENSE" }
 dependencies = []
 

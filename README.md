@@ -70,6 +70,7 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 
 ## Changelog
 
+### 1.2.1
 - Change display name from `Single Line Picker` to `SLP List View`
 
 ### 1.2.0
