@@ -4,12 +4,12 @@
 </p>
 
 # Tools
-[Single Line Picker](https://github.com/hetima/ComfyUI-SingleLinePicker) の動作を補助するPythonスクリプトです。
+[SLP List View](https://github.com/hetima/ComfyUI-SingleLinePicker) の動作を補助するPythonスクリプトです。
 
 
 ## slp_buld_csv.py
 
-.csvや.tsvを読み込んで、Single Line Pickerで使える形式に変換したテキストを書き出します。
+.csvや.tsvを読み込んで、SLP List Viewで使える形式に変換したテキストを書き出します。
 
 ```
 python path/to/slp_build_folder.py path/to/file.csv
@@ -21,16 +21,16 @@ python path/to/slp_build_folder.py path/to/file.csv
 python path/to/slp_build_folder.py path/to/folder
 ```
 
-と実行すると、フォルダ内のすべての.csv、.tsvファイルをパースします。ファイル名を表示テキスト、前述の方法でパースした内容をbase64エンコードして出力されるテキストとして格納し、output.slp.txtの名前で保存します。`#section`形式の出力が`#section`形式となる二重の入れ子構造になっています。Single Line Pickerを2つ繋げて最初のノードに適用することで、カテゴリーを選んでから項目を選ぶようなことができるようになります。
+と実行すると、フォルダ内のすべての.csv、.tsvファイルをパースします。ファイル名を表示テキスト、前述の方法でパースした内容をbase64エンコードして出力されるテキストとして格納し、output.slp.txtの名前で保存します。`#section`形式の出力が`#section`形式となる二重の入れ子構造になっています。SLP List Viewを2つ繋げて最初のノードに適用することで、カテゴリーを選んでから項目を選ぶようなことができるようになります。
 
 ![screenshot](../assets/slp04.jpg)
 
-書き出されたテキストファイルをファイルを読み込むノードでSingle Line Pickerに繋げるか、ノード情報パネルのParametersの`source_text`に内容をペーストすることで内容を適用できます。
+書き出されたテキストファイルをファイルを読み込むノードでSLP List Viewに繋げるか、ノード情報パネルのParametersの`source_text`に内容をペーストすることで内容を適用できます。
 
 
 ## slp_build_folder.py
 
-フォルダを読み込んで、その中の.txtファイルをまとめて、Single Line Pickerで使える形式に変換したテキストを書き出します。
+フォルダを読み込んで、その中の.txtファイルをまとめて、SLP List Viewで使える形式に変換したテキストを書き出します。
 
 ```
 python path/to/slp_build_folder.py -d path/to/folder
@@ -44,4 +44,4 @@ python path/to/slp_build_folder.py -dd path/to/folder
 
 `-dd`オプションを付けると、フォルダ内のすべてのサブフォルダに対して前述処理を行い、サブフォルダ名を表示テキスト、処理内容を出力されるテキストとして格納し、output.slp.txtの名前で保存します。入れ子構造になります。
 
-書き出されたテキストファイルをファイルを読み込むノードでSingle Line Pickerに繋げるか、ノード情報パネルのParametersの`source_text`に内容をペーストすることで内容を適用できます。
+書き出されたテキストファイルをファイルを読み込むノードでSLP List Viewに繋げるか、ノード情報パネルのParametersの`source_text`に内容をペーストすることで内容を適用できます。

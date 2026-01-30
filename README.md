@@ -11,7 +11,7 @@ This is a custom node for ComfyUI that lets you select single line from lists of
 
 ## Nodes
 
-### Single Line Picker
+### SLP List View
 Displays the input text as a list of individual lines. Outputs the selected line.
 
 The displayed text is reflected by connecting the `text` input to an appropriate node that outputs multi-line text. During the first execution or when the text content changes, the selection state resets and nothing is output. Performing a partial execution from the toolbox that appears when selecting the node allows text to flow in without running the entire process. If the content is static, it's fine to disconnect after it has been loaded once.
@@ -47,12 +47,12 @@ last value
 
 ![screecshot02](./assets/slp02.jpg)
 
-[Python scripts are included](./tools/README.md) that generates formatted text from CSV or text files. By formatting the output text into a Single Line Picker-readable format, you can recreate a nested list structure. By connecting two Single Line Pickers and applying them to the first node, you can enable functionality like selecting a category before choosing an item. This can be created using the included script.
+[Python scripts are included](./tools/README.md) that generates formatted text from CSV or text files. By formatting the output text into a SLP List View-readable format, you can recreate a nested list structure. By connecting two SLP List Views and applying them to the first node, you can enable functionality like selecting a category before choosing an item. This can be created using the included script.
 
 ![screecshot05](./assets/slp05.jpg)
 ### SLP Lora Loader / SLP Lora Loader (Model Only)
 
-It's almost identical to the default loader. Since the LoRA file selection part is text instead of a combo box so that connect a Single Line Picker directly.
+It's almost identical to the default loader. Since the LoRA file selection part is text instead of a combo box so that connect a SLP List View directly.
 
 It has an output parameter called `stem`. It outputs LoRA filename without file extension. Available in the next section's SLP Filename Prefix.
 
@@ -70,10 +70,12 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 
 ## Changelog
 
+- Change display name from `Single Line Picker` to `SLP List View`
+
 ### 1.2.0
 - Added `#section` mode
-- Added helper scripts: slp_buld_csv.py and slp_build_folder.py
-- Supports connection between Single Line Pickers
+- Added helper scripts: `slp_buld_csv.py` and `slp_build_folder.py`
+- Supports connection between SLP List Views
 
 ### 1.1.0
 - Added new custom node: SLP Filename Prefix

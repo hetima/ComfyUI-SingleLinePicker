@@ -2,7 +2,7 @@
 class SLPSingleLinePicker:
 
     NAME = "HetimaSingleLinePicker"
-    DISPLAY_NAME = "Single Line Picker"
+    DISPLAY_NAME = "SLP List View"
     
     CATEGORY = "SingleLinePicker"
     DESCRIPTION = "Select one line from the text list with a single click."

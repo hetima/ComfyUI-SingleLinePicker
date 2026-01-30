@@ -11,7 +11,7 @@
 
 ## Nodes
 
-### Single Line Picker
+### SLP List View
 
 入力されたテキストを個々の行のリストとして表示します。選択された行を出力します。
 
@@ -47,13 +47,13 @@ last value
 
 ![screecshot02](./assets/slp02.jpg)
 
-csv, tsvやテキストファイル群から整形済みテキストを生成する[Pythonスクリプトが付属しています](./tools/README-ja.md)。出力テキストをSingle Line Pickerで読める形式にすると、二重構造のリストを再現することができます。Single Line Pickerを2つ繋げて最初のノードに適用することで、カテゴリーを選んでから項目を選ぶようなことができるようになります。付属スクリプトで簡単に作ることができます。
+csv, tsvやテキストファイル群から整形済みテキストを生成する[Pythonスクリプトが付属しています](./tools/README-ja.md)。出力テキストをSLP List Viewで読める形式にすると、二重構造のリストを再現することができます。SLP List Viewを2つ繋げて最初のノードに適用することで、カテゴリーを選んでから項目を選ぶようなことができるようになります。付属スクリプトで簡単に作ることができます。
 
 ![screecshot05](./assets/slp05.jpg)
 
 ### SLP Lora Loader / SLP Lora Loader (Model Only)
 
-デフォルトのローダーとほぼ同じです。LoRAファイルの指定部分がコンボボックスではなくテキストになっているのでSingle Line Pickerを直接繋げることができます。
+デフォルトのローダーとほぼ同じです。LoRAファイルの指定部分がコンボボックスではなくテキストになっているのでSLP List Viewを直接繋げることができます。
 
 出力パラメータ`stem`を持っています。LoRAファイルの拡張子を除いたファイル名を出力します。次節のSLP Filename Prefixで利用できます。
 
@@ -71,10 +71,12 @@ csv, tsvやテキストファイル群から整形済みテキストを生成す
 
 ## Changelog
 
+- ノード表示名を `SLP List View` に変更
+
 ### 1.2.0
 - `#section`モードを追加
-- ヘルパースクリプト slp_buld_csv.py と slp_build_folder.py を追加
-- Single Line Picker 同士の接続に対応
+- ヘルパースクリプト `slp_buld_csv.py` と `slp_build_folder.py` を追加
+- SLP List View 同士の接続に対応
 
 
 ### 1.1.0
