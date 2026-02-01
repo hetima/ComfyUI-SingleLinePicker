@@ -53,6 +53,9 @@ csv, tsvやテキストファイル群から整形済みテキストを生成す
 
 ![screecshot05](./assets/slp05.jpg)
 
+> [!WARNING]
+>Nodes 2.0 にはまだ対応していません。
+
 ### SLP Lora Loader / SLP Lora Loader (Model Only)
 
 デフォルトのローダーとほぼ同じです。LoRAファイルの指定部分がコンボボックスではなくテキストになっているのでSLP List Viewを直接繋げることができます。

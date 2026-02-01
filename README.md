@@ -53,6 +53,10 @@ last value
 [Python scripts are included](./tools/README.md) that generates formatted text from CSV or text files. By formatting the output text into a SLP List View-readable format, you can recreate a nested list structure. By connecting two SLP List Views and applying them to the first node, you can enable functionality like selecting a category before choosing an item. This can be created using the included script.
 
 ![screecshot05](./assets/slp05.jpg)
+
+> [!WARNING]
+>Nodes 2.0 is not supported yet.
+
 ### SLP Lora Loader / SLP Lora Loader (Model Only)
 
 It's almost identical to the default loader. Since the LoRA file selection part is text instead of a combo box so that connect a SLP List View directly.
