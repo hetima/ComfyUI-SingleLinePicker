@@ -1,7 +1,7 @@
 import { app } from "../../scripts/app.js"
 import { api } from "../../scripts/api.js";
 import { ComfyWidgets } from "../../scripts/widgets.js";
-
+import { uploader } from './libUploadFile.js';
 
 
 app.registerExtension({
@@ -17,6 +17,12 @@ app.registerExtension({
                 content: "Get Lora List",
                 callback: () => {
                     node?.listLoraFiles?.();
+                }
+            });
+            items.push({
+                content: "Upload File...",
+                callback: () => {
+                    node?.uploadFile?.();
                 }
             })
         }
@@ -360,6 +366,14 @@ app.registerExtension({
 
                 fetchCheckpoints().then((value) => {
                     this.setTextList(value?.join?.("\n"));
+                });
+            };
+
+            nodeType.prototype.uploadFile = function () {
+                uploader.uploadFile((success, text) => {
+                    if (success) {
+                        this.setTextList(text);
+                    }
                 });
             };
 
