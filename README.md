@@ -73,6 +73,7 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 
 ## Changelog
 
+### 1.2.2
 - Added `Get Lora List` to context menu
 - Added `Upload File...` to context menu
 
