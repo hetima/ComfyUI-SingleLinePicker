@@ -70,6 +70,16 @@ csv, tsvやテキストファイル群から整形済みテキストを生成す
 
 ![screecshot03](./assets/slp03.jpg)
 
+## Installation
+
+`ComfyUI/custom_nodes` で `git clone` する
+
+```
+git clone https://github.com/hetima/ComfyUI-SingleLinePicker
+```
+もしくは ComfyUI Manager から探してインストールしてください。
+
+必要な追加 pip パッケージはありません。
 
 ## Changelog
 

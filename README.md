@@ -71,6 +71,18 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 ![screecshot03](./assets/slp03.jpg)
 
 
+## Installation
+
+Clone the git repository at the location of `ComfyUI/custom_nodes`.
+
+```
+git clone https://github.com/hetima/ComfyUI-SingleLinePicker
+```
+Or search and install from ComfyUI Manager.
+
+No additional pip packages are required.
+
+
 ## Changelog
 
 ### 1.2.2
