@@ -20,6 +20,9 @@ You can also change the content by directly editing `source_text` in the Paramet
 
 The "Get Lora List" item is added to the node's context menu. Selecting this retrieves a list of installed LoRA files and displays them. You can output directly to the SLP Lora Loader described later.
 
+The "Upload File..." item is added to the node's context menu.
+Selecting this allows you to configure settings from a local file. Supported file types include `.csv`, `.tsv`, and `.txt`. `.csv` and `.tsv` files are processed by interpreting the first column as display text and the second column as output text (It is treated as a Section Mode described later.).
+
 **Dictionary Mode**: Entering `#dict` on the first line of text causes subsequent lines to be interpreted as “Display Text: Output Text” separated by colon. This allows you to grasp long contents with concise titles.
 
 Example:
@@ -71,6 +74,7 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 ## Changelog
 
 - Added `Get Lora List` to context menu
+- Added `Upload File...` to context menu
 
 ### 1.2.1
 - Change display name from `Single Line Picker` to `SLP List View`
