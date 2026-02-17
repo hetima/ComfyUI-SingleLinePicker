@@ -14,6 +14,8 @@ This is a custom node for ComfyUI that lets you select single line from lists of
 ### SLP List View
 Displays the input text as a list of individual lines. Outputs the selected line.
 
+Since the output is a string, it cannot be connected directly to a combo box. However, you can feed it by inserting a [ComfyUI-Easy-Use](https://github.com/yolain/ComfyUI-Easy-Use)'s "Show Any (showAnything)" node in between.
+
 The displayed text is reflected by connecting the `text` input to an appropriate node that outputs multi-line text. During the first execution or when the text content changes, the selection state resets and nothing is output. Performing a partial execution from the toolbox that appears when selecting the node allows text to flow in without running the entire process. If the content is static, it's fine to disconnect after it has been loaded once.
 
 You can also change the content by directly editing `source_text` in the Parameters section of the node information panel.
