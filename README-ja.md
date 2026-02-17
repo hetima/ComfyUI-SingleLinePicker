@@ -88,6 +88,7 @@ git clone https://github.com/hetima/ComfyUI-SingleLinePicker
 
 ## Changelog
 
+### 1.2.2
 - `Get Lora List` コンテクストメニューを追加
 - `Upload File...` コンテクストメニューを追加
 
