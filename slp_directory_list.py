@@ -9,7 +9,7 @@ class SLPDirectoryContents:
     
     # 毎回読み込む
     @classmethod
-    def IS_CHANGED(cls):
+    def IS_CHANGED(cls, **kwargs):
         return float("NaN")
             
     @classmethod
