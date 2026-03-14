@@ -15,13 +15,13 @@
 
 入力されたテキストを個々の行のリストとして表示します。選択された行を出力します。
 
-出力は文字列なのでコンボボックスには直接接続できませんが、[ComfyUI-Easy-Use](https://github.com/yolain/ComfyUI-Easy-Use)の「Show Any (showAnything)」ノードを途中に挟むと流し込むことができます。
+出力は文字列ですが、すべてのインプットに繋ぐことができるのでコンボボックスにも接続できます。
 
 表示されるテキストは、複数行テキストを出力する適当なノードからINPUTの`text`に繋げることで反映されます。最初の実行時やテキストの内容が変わると選択状態がリセットされ、何も出力しません。ノードを選択したときに出てくるツールボックスから部分実行を行えば全体の工程を行わずにテキストが流れ込みます。内容が固定の場合は一度読み込まれたら接続を切っても大丈夫です。
 
 ノード情報パネルのParametersで`source_text`を直接編集することでも内容を変更できます。
 
-ノードのコンテクストメニューに「Get Lora List」項目が追加されます。これを選ぶとインストールしているLoRAの一覧を取得しリストに表示します。後述するSLP Lora Loaderに直接出力できます。
+ノードのコンテクストメニューに「Get Lora List」項目が追加されます。これを選ぶとインストールしているLoRAの一覧を取得しリストに表示します。
 
 ノードのコンテクストメニューに「Upload File...」項目が追加されます。これを選ぶとローカルファイルから内容を設定できます。`.csv`, `.tsv`, `.txt`ファイルに対応しています。`.csv`と`.tsv`は1列目を表示テキスト2列目を出力されるテキストと解釈して処理します（後述のセクションモードになります）。
 
@@ -60,7 +60,7 @@ csv, tsvやテキストファイル群から整形済みテキストを生成す
 
 ### SLP Lora Loader / SLP Lora Loader (Model Only)
 
-デフォルトのローダーとほぼ同じです。LoRAファイルの指定部分がコンボボックスではなくテキストになっているのでSLP List Viewを直接繋げることができます。
+デフォルトのローダーとほぼ同じです。LoRAファイルの指定部分がコンボボックスではなくテキストになっています。
 
 出力パラメータ`stem`を持っています。LoRAファイルの拡張子を除いたファイル名を出力します。次節のSLP Filename Prefixで利用できます。
 
@@ -75,18 +75,34 @@ csv, tsvやテキストファイル群から整形済みテキストを生成す
 
 ![screecshot03](./assets/slp03.jpg)
 
+
+### SLP Directory Contents
+
+ローカルのフォルダの内容を読み込み改行で区切られた文字列として出力します。
+- `path`: 対象のフォルダ
+- `is_full_path`: フルバスで出力するかファイル名だけ出力するか
+- `SLP_format`: SLP List View に最適化したフォーマットで出力するかどうか
+- `prefix`: 出力に追加するプレフィクス
+
+例: `path` に `ComfyUI_models/loras/myLora` などと指定し、`is_full_path` を `False`、`SLP_format` を `True`、`prefix` を `myLora/` と指定すると、lorasのサブフォルダだけを読み込み、Lora Loader に出力できるパス形式になります。
+
+
 ## Installation
 
 `ComfyUI/custom_nodes` で `git clone` する
 
 ```
-git clone https://github.com/hetima/ComfyUI-SingleLinePicker
+git clone https://github.com/hetima/ComfyUI-SingleLinePicker.git
 ```
 もしくは ComfyUI Manager から探してインストールしてください。
 
 必要な追加 pip パッケージはありません。
 
 ## Changelog
+
+### 1.3.0
+- カスタムノード `SLP Directory Contents` を追加
+- `SLP List View`の出力をすべての入力に接続できるようにした
 
 ### 1.2.2
 - `Get Lora List` コンテクストメニューを追加
@@ -98,7 +114,7 @@ git clone https://github.com/hetima/ComfyUI-SingleLinePicker
 ### 1.2.0
 - `#section`モードを追加
 - ヘルパースクリプト `slp_buld_csv.py` と `slp_build_folder.py` を追加
-- SLP List View 同士の接続に対応
+-` SLP List View` 同士の接続に対応
 
 
 ### 1.1.0

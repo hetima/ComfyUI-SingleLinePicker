@@ -18,7 +18,7 @@ Since the output is a string, it cannot be connected directly to a combo box. Ho
 
 The displayed text is reflected by connecting the `text` input to an appropriate node that outputs multi-line text. During the first execution or when the text content changes, the selection state resets and nothing is output. Performing a partial execution from the toolbox that appears when selecting the node allows text to flow in without running the entire process. If the content is static, it's fine to disconnect after it has been loaded once.
 
-You can also change the content by directly editing `source_text` in the Parameters section of the node information panel.
+Although the output is a string, it can be connected to any input, so it can also be connected to a combo box.
 
 The "Get Lora List" item is added to the node's context menu. Selecting this retrieves a list of installed LoRA files and displays them. You can output directly to the SLP Lora Loader described later.
 
@@ -61,7 +61,7 @@ last value
 
 ### SLP Lora Loader / SLP Lora Loader (Model Only)
 
-It's almost identical to the default loader. Since the LoRA file selection part is text instead of a combo box so that connect a SLP List View directly.
+It's almost identical to the default loader. Since the LoRA file selection part is text instead of a combo box.
 
 It has an output parameter called `stem`. It outputs LoRA filename without file extension. Available in the next section's SLP Filename Prefix.
 
@@ -77,6 +77,17 @@ Placeholders can be created up to four: `$1`, `$2`, `$3`, and `$4`. Each is repl
 ![screecshot03](./assets/slp03.jpg)
 
 
+### SLP Directory Contents
+
+Reads the contents of a local folder and outputs them as a string separated by newlines.
+- `path`: The target folder
+- `is_full_path`: Whether to output the full path or just the filename
+- `SLP_format`: Whether to output in a format optimized for SLP List View
+- `prefix`: A prefix to add to the output
+
+Example: If you specify `ComfyUI_models/loras/myLora` for `path`, set `is_full_path` to `False`, `SLP_format` to `True`, and `prefix` to `myLora/`, the script will read only the loras subfolder and output the paths in a format compatible with Lora Loader.
+
+
 ## Installation
 
 Clone the git repository at the location of `ComfyUI/custom_nodes`.
@@ -90,6 +101,10 @@ No additional pip packages are required.
 
 
 ## Changelog
+
+### 1.3.0
+- Added new custom node `SLP Directory Contents`
+- The output of `SLP List View` can be connected to all inputs.
 
 ### 1.2.2
 - Added `Get Lora List` to context menu
