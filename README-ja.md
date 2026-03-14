@@ -100,7 +100,7 @@ git clone https://github.com/hetima/ComfyUI-SingleLinePicker.git
 
 ## Changelog
 
-### 1.3.0
+### 1.3.1
 - カスタムノード `SLP Directory Contents` を追加
 - `SLP List View`の出力をすべての入力に接続できるようにした
 

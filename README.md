@@ -102,7 +102,7 @@ No additional pip packages are required.
 
 ## Changelog
 
-### 1.3.0
+### 1.3.1
 - Added new custom node `SLP Directory Contents`
 - The output of `SLP List View` can be connected to all inputs.
 
