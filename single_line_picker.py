@@ -1,4 +1,11 @@
 
+class AnyType(str):
+    """A special class that is always equal in not equal comparisons. Credit to pythongosssss"""
+    def __ne__(self, __value: object) -> bool:
+        return False
+
+any_type = AnyType("*")
+
 class SLPSingleLinePicker:
 
     NAME = "HetimaSingleLinePicker"
@@ -20,8 +27,8 @@ class SLPSingleLinePicker:
         },
     }
 
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("STRING",)
+    RETURN_TYPES = (any_type,)
+    RETURN_NAMES = ("selection",)
     OUTPUT_TOOLTIPS = ("text content of selected line",)
     OUTPUT_NODE = True
     FUNCTION = "executed"
